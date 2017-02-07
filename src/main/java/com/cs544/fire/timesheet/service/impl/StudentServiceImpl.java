@@ -6,6 +6,8 @@ import com.cs544.fire.timesheet.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * Created by eyob on 2/6/17.
  */
@@ -20,5 +22,24 @@ public class StudentServiceImpl implements StudentService {
 
         studentDAO.add(student);
 
+    }
+
+    public List<Student> getAllStudents() {
+
+        return studentDAO.getAll();
+
+    }
+
+    public void updateStudents(long id,Student student){
+        Student student_new=studentDAO.get(id);
+        student_new.setStudentID(student.getStudentID());
+        student_new.setFirstName(student.getFirstName());
+        student_new.setLastName(student.getLastName());
+        student_new.setBarCode(student.getBarCode());
+        studentDAO.update(student_new);
+
+    }
+    public Student getStudent(long id){
+        return studentDAO.get(id);
     }
 }
