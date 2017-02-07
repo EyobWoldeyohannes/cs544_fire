@@ -25,32 +25,32 @@ public class StudentController {
     @Autowired
     StudentService studentService;
 
-    @RequestMapping(value = "/addStudent", method = RequestMethod.POST)
+    @RequestMapping(value = "/student/add", method = RequestMethod.POST)
     public String addStudent(Student student, Model model) {
         studentService.addStudent(student);
         //request.getSession().setAttribute("successMessage", "Profile successfully updated");
-        return "redirect:/students";
+        return "redirect:/student/list";
     }
-    @RequestMapping(value = "/editStudent/{id}", method = RequestMethod.POST)
+    @RequestMapping(value = "/student/edit/{id}", method = RequestMethod.POST)
     public String editStudent(Student student, @PathVariable long id, Model model) {
         studentService.updateStudents(id,student);
         //request.getSession().setAttribute("successMessage", "Profile successfully updated");
-        return "redirect:/students";
+        return "redirect:/student/list";
     }
-    @RequestMapping(value = "/editStudent/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/student/edit/{id}", method = RequestMethod.GET)
     public String editStudentForm(@PathVariable long id,  Model model) {
         Student student=studentService.getStudent(id);
         model.addAttribute("student",student);
         return "editStudent";
     }
 
-    @RequestMapping(value = "/addStudent", method = RequestMethod.GET)
+    @RequestMapping(value = "/student/add", method = RequestMethod.GET)
     public String getStudentForm( Model model) {
 
         return "addStudent";
     }
 
-    @RequestMapping(value = "/students", method = RequestMethod.GET)
+    @RequestMapping(value = "/student/list", method = RequestMethod.GET)
     public String getAllStudent( Model model) {
 
         List<Student> students=studentService.getAllStudents();

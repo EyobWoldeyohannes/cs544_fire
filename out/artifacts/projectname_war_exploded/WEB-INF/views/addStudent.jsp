@@ -1,4 +1,4 @@
-<%@include file="/WEB-INF/views/template/header.jsp"%>
+<%@include file="/WEB-INF/views/template/secureheader.jsp"%>
 <div class="container">
     <!-- Example row of columns -->
     <div class="panel panel-primary">
@@ -6,7 +6,7 @@
         <div class="panel-body">
     <div class="row">
         <div class="col-sm-6">
-            <form action="addStudent" method="POST" >
+            <form action="../student/add" method="POST" >
                 <div class="form-group">
                     <label for="id">Student Id:</label>
                     <input type="text" class="form-control" id="id" name="studentID" >
