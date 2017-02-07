@@ -4,7 +4,7 @@
 
     <div class="row">
         <div class="col-sm-6">
-            <h2>Edit Student Record</h2>
+            <h2>Edit Student</h2>
             <form action="../editStudent/${student.id}" method="POST" >
                 <div class="form-group">
                     <label for="id">Student Id:</label>
