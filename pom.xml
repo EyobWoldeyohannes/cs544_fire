@@ -13,6 +13,7 @@
         <spring-framework.version>4.2.2.RELEASE</spring-framework.version>
         <hibernate.version>4.2.21.Final</hibernate.version>
         <jstl.version>1.2</jstl.version>
+        <spring.security.version>4.0.3.RELEASE</spring.security.version>
     </properties>
 
     <dependencies>
@@ -84,6 +85,18 @@
             <groupId>commons-dbcp</groupId>
             <artifactId>commons-dbcp</artifactId>
             <version>1.4</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-web</artifactId>
+            <version>${spring.security.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-config</artifactId>
+            <version>${spring.security.version}</version>
         </dependency>
 
     </dependencies>
