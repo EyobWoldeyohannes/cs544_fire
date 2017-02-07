@@ -1,10 +1,12 @@
 <%@include file="/WEB-INF/views/template/header.jsp"%>
 <div class="container">
     <!-- Example row of columns -->
+    <div class="panel panel-primary">
+        <div class="panel-heading">Edit Student</div>
+            <div class="panel-body">
 
     <div class="row">
         <div class="col-sm-6">
-            <h2>Edit Student</h2>
             <form action="../editStudent/${student.id}" method="POST" >
                 <div class="form-group">
                     <label for="id">Student Id:</label>
@@ -30,5 +32,7 @@
 
 
 </div>
-
+</div>
+</div>
+</div>
 <%@include file="/WEB-INF/views/template/footer.jsp"%>

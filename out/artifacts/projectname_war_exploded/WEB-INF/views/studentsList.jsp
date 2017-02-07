@@ -1,8 +1,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@include file="/WEB-INF/views/template/header.jsp"%>
-<div class="row">
+<div class="container">
+    <div class="panel panel-primary">
+        <div class="panel-heading">Student List</div>
+        <div class="panel-body">
 
-    <div class="col-sm-8">
+    <div class="col-sm-12">
         <form action="addStudent" method="GET">
             <button type="submit" class="btn btn-success">Add New Student</button>
         </form>
@@ -38,6 +41,8 @@
     </c:forEach>
 
 </table>
+    </div>
+</div>
     </div>
 </div>
 <%@include file="/WEB-INF/views/template/footer.jsp"%>
