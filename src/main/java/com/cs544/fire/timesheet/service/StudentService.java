@@ -14,4 +14,5 @@ public interface StudentService {
     public List<Student> getAllStudents();
     public Student getStudent(long id);
     public void updateStudents(long id,Student student);
+    public List<Student> getStudentById(String studentid);
 }

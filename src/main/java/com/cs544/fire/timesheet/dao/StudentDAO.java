@@ -15,6 +15,8 @@ import java.util.List;
 public interface StudentDAO extends GenericDAO<Student> {
 
     List<Student> getAll();
+    public List<Student> getStudentById(String studentid);
+
 
 
 }

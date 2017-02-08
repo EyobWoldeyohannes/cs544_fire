@@ -1,8 +1,8 @@
 package com.cs544.fire.timesheet.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Abel on 2/5/2017.
@@ -16,9 +16,26 @@ public class Registration {
 
 
     private double GPA;
+    @OneToOne
+            @JoinColumn(name="courseOffering")
+    CourseOffering courseOfferings =new CourseOffering();
+
+    public CourseOffering getCourseOfferings() {
+        return courseOfferings;
+    }
+
+    public void setCourseOfferings(CourseOffering courseOfferings) {
+        this.courseOfferings = courseOfferings;
+    }
+
     public Registration(){
 
     }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
     public long getId() {
         return id;
     }

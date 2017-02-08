@@ -55,7 +55,7 @@
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Faculty <span class="caret"></span></a>
                 <ul class="dropdown-menu">
                     <li><a href="#"></a></li>
-                    <li><a href="student/list">View Attendance</a></li>
+                    <li><a href="/fire-timesheet/student/attendance">View Attendance</a></li>
                     <li role="separator" class="divider"></li>
                     <li><a href="#">Upload Attendance</a></li>
                 </ul>

@@ -42,4 +42,10 @@ public class StudentServiceImpl implements StudentService {
     public Student getStudent(long id){
         return studentDAO.get(id);
     }
+
+
+    public List<Student> getStudentById(String studentid)
+    {
+        return studentDAO.getStudentById(studentid);
+    }
 }

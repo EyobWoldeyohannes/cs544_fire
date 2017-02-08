@@ -26,4 +26,25 @@ public class StudentDAOImpl extends GenericDAOImpl <Student> implements StudentD
         return (List<Student>)query.list();
 
     }
+
+    public List<Student> getStudentById(String studentid){
+
+        Query query = sessionFactory.getCurrentSession().createQuery("from Student s where studentID=:sid");
+        query.setParameter("sid",studentid);
+        List<Student> student = (List<Student>)query.list();
+
+            return student;
+
+
+    }
+
+
+    @Override
+    public Student get(long id){
+
+        Query query = sessionFactory.getCurrentSession().createQuery("from Student s where s.id="+id);
+
+        return (Student)query.list().get(0);
+
+    }
 }
