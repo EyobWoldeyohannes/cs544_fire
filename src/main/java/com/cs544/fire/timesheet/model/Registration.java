@@ -15,4 +15,19 @@ public class Registration {
     private long id;
 
 
+    private double GPA;
+    public Registration(){
+
+    }
+    public long getId() {
+        return id;
+    }
+    public double getGPA() {
+        return GPA;
+    }
+
+    public void setGPA(double GPA) {
+        this.GPA = GPA;
+    }
+
 }

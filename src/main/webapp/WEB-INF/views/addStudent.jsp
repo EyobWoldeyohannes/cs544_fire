@@ -1,3 +1,4 @@
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@include file="/WEB-INF/views/template/secureheader.jsp"%>
 <div class="container">
     <!-- Example row of columns -->
@@ -6,26 +7,27 @@
         <div class="panel-body">
     <div class="row">
         <div class="col-sm-6">
-            <form action="../student/add" method="POST" >
+            <form:form commandName="student" action="${pageContext.request.contextPath}/student/add" method="POST">
                 <div class="form-group">
-                    <label for="id">Student Id:</label>
-                    <input type="text" class="form-control" id="id" name="studentID" >
+                    <label for="id">Student Id:</label><form:errors path="studentID" cssClass="errorLable"/>
+                    <form:input path="studentID" type="text" class="form-control" id="id" name="studentID" />
+
                 </div>
                 <div class="form-group">
-                    <label for="fname">First Name:</label>
-                    <input type="text" class="form-control" id="fname" name="firstName" >
+                    <label for="fname">First Name:</label><form:errors path="firstName" cssClass="errorLable"/>
+                    <form:input path="firstName" type="text" class="form-control" id="fname" name="firstName" />
                 </div>
                 <div class="form-group">
-                    <label for="lname">Last Name:</label>
-                    <input type="text" class="form-control" id="lname" name="lastName" >
+                    <label for="lname">Last Name:</label><form:errors path="lastName" cssClass="errorLable"/>
+                    <form:input  path ="lastName" type="text" class="form-control" id="lname" name="lastName" />
                 </div>
                 <div class="form-group">
-                    <label for="bcode">Student Barcode:</label>
-                    <input type="text" class="form-control" id="bcode" name="barCode" >
+                    <label for="bcode">Student Barcode:</label><form:errors path="barCode" cssClass="errorLable"/>
+                    <form:input path="barCode" type="text" class="form-control" id="bcode" name="barCode" />
                 </div>
 
                 <button type="submit" class="btn btn-default">Add Student</button>
-            </form>
+            </form:form>
         </div>
     </div>
 

@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:security="http://www.springframework.org/schema/security"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/security
+        http://www.springframework.org/schema/security/spring-security.xsd">
 
 
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
@@ -26,11 +30,12 @@
           class="org.springframework.beans.factory.config.PropertiesFactoryBean">
         <property name="properties">
             <props>
-                <prop key="hibernate.hbm2ddl.auto">create</prop>
+                <prop key="hibernate.hbm2ddl.auto">update</prop>
                 <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
                 <prop key="connection.pool.size">1</prop>
                 <prop key="hibernate.show_sql">true</prop>
                 <prop key="hibernate.format_sql">false</prop>
+                <prop key="hibernate.hbm2ddl.import_files">populate.sql</prop>
             </props>
         </property>
 
@@ -40,5 +45,43 @@
         <property name="sessionFactory" ref="sessionFactory"/>
 
     </bean>
+
+    <!-- Security stuffs -->
+    <security:http auto-config="true">
+        <security:intercept-url pattern="/dashboard" access="hasAnyRole('ROLE_ADMIN','ROLE_FACULTY','ROLE_STUDENT')" />
+        <security:intercept-url pattern="/student/list" access="hasAnyRole('ROLE_ADMIN','ROLE_FACULTY')" />
+        <security:intercept-url pattern="/student/add" access="hasRole('ROLE_ADMIN')" />
+        <security:intercept-url pattern="/student/edit/*" access="hasRole('ROLE_ADMIN')" />
+        <security:intercept-url pattern="/student/delete/*" access="hasRole('ROLE_ADMIN')" />
+        <security:csrf disabled="true"/>
+
+        <security:intercept-url pattern="/faculty/add" access="hasRole('ROLE_ADMIN')" />
+        <security:intercept-url pattern="/faculty/edit/*" access="hasRole('ROLE_ADMIN')" />
+        <security:intercept-url pattern="/faculty/delete/*" access="hasRole('ROLE_ADMIN')" />
+
+        <security:form-login
+                login-page="/login"
+                default-target-url="/dashboard"
+                login-processing-url="/postLogin"
+                authentication-failure-url="/login?loginFailed=1"
+                username-parameter="username"
+                password-parameter="password" />
+        <security:logout
+                logout-success-url="/"
+                logout-url="/doLogout"/>
+        <security:csrf />
+    </security:http>
+
+    <bean id="bcryptEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
+
+    <security:authentication-manager>
+        <security:authentication-provider>
+            <!--<security:password-encoder ref="bcryptEncoder"/>-->
+            <security:jdbc-user-service
+                    data-source-ref="dataSource"
+                    authorities-by-username-query="SELECT username, role FROM user WHERE username = ?"
+                    users-by-username-query="SELECT username, password, enabled FROM user WHERE username = ?" />
+        </security:authentication-provider>
+    </security:authentication-manager>
 
 </beans>

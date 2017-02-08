@@ -7,11 +7,22 @@
             <div class="account-wall">
                 <img class="profile-img" src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120"
                      alt="">
-                <form action="dashboard" class="form-signin">
-                    <input type="text" class="form-control" placeholder="Email" required autofocus>
-                    <input type="password" class="form-control" placeholder="Password" required>
-                    <button class="btn btn-lg btn-primary btn-block" type="submit">
-                        Sign in</button>
+                <form id="login-form" action="<c:url value="/postLogin" />" method="post" class="form-signin">
+                    <c:if test="${not empty error}">
+                        <div class="error" style="color: #ff0000;">${error}</div>
+                    </c:if>
+
+                    <input name= "username" type="text" class="form-control" placeholder="Email" required autofocus
+                           value='<c:if test="${not empty param.login_error}"><c:out value="${SPRING_SECURITY_LAST_USERNAME}"/></c:if>'>
+                    <input name="password" type="password" class="form-control" placeholder="Password" required>
+                    <%--<button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>--%>
+                    <input class="btn btn-primary" type="submit" name="yt0" value="Login">
+                    <input class="btn btn-danger btnClear" name="yt1" type="button" value="Clear" onclick="$('#login-form').trigger('reset');">
+
+                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+                    <p></p>
+                    <p></p>
+                    <p></p>
                     <label class="checkbox pull-left">
                         <input type="checkbox" value="remember-me">
                         Remember me

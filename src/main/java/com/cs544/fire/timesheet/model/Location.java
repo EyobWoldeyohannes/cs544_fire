@@ -11,7 +11,25 @@ import javax.persistence.Id;
 @Entity
 public class Location {
     @Id
-    @GeneratedValue
-    private long id;
+    private String shortname;
+    private String longname;
+
+    public Location(){
+
+    }
+
+
+    public String getshortname() {
+        return shortname;
+    }
+
+    public void setShortnamename(String location) {
+        this.shortname = location;
+    }
+
+    public String getLongname() {
+        return longname;
+    }
+
 
 }

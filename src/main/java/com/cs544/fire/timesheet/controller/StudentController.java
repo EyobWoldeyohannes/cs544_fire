@@ -7,11 +7,14 @@ import org.springframework.beans.factory.annotation.Required;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 import java.security.Principal;
 import java.util.List;
 
@@ -26,13 +29,17 @@ public class StudentController {
     StudentService studentService;
 
     @RequestMapping(value = "/student/add", method = RequestMethod.POST)
-    public String addStudent(Student student, Model model) {
+    public String addStudent(@Valid @ModelAttribute("student") Student student , BindingResult bind, Model model) {
+        if(bind.hasErrors()){
+            return "addStudent";
+        }
         studentService.addStudent(student);
         //request.getSession().setAttribute("successMessage", "Profile successfully updated");
         return "redirect:/student/list";
     }
     @RequestMapping(value = "/student/edit/{id}", method = RequestMethod.POST)
     public String editStudent(Student student, @PathVariable long id, Model model) {
+
         studentService.updateStudents(id,student);
         //request.getSession().setAttribute("successMessage", "Profile successfully updated");
         return "redirect:/student/list";
@@ -45,8 +52,7 @@ public class StudentController {
     }
 
     @RequestMapping(value = "/student/add", method = RequestMethod.GET)
-    public String getStudentForm( Model model) {
-
+    public String getStudentForm(@ModelAttribute("student") Student student) {
         return "addStudent";
     }
 
