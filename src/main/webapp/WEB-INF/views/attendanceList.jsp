@@ -86,20 +86,36 @@
                     </tr>
 
                     </thead>
-                    <c:forEach items="${csession}" var="session">
-                        <tr>
-                            <td>${session.date}</td>
-                            <td>${session.timeslot.description}</td>
-                            <td>${session.courseOffering.courseOfferingId}</td>
+                    <c:set var="present" value="0" scope="page" />
+                    <c:set var="absent" value="0" scope="page" />
 
-                            <td> ******* </td>
+                    <c:forEach items="${tempSession}" var="tempsession">
+                        <tr>
+                            <td>${tempsession.sessiondate}</td>
+                            <td>${tempsession.timeslot}</td>
+                            <td>${tempsession.offeringid}</td>
+
+                            <td>
+                                <c:if test="${tempsession.attendance==true}">
+                                <span style="color:green" class="glyphicon glyphicon-ok"></span>
+                                   <c:set var="present" value="${present + 1}" scope="page"/>
+                                </c:if>
+                                <c:if test="${tempsession.attendance==false}">
+                                    <c:set var="absent" value="${absent + 1}" scope="page"/>
+                                <span style="color:red"  class="glyphicon glyphicon-remove"></span>
+                                </c:if>
+
+                            </td>
 
                         </tr>
 
                     </c:forEach>
 
                 </table>
-
+            <c:if test="${present!=0 || absent!=0}">
+                <h1>Present: ${present}</h1>
+                <h1>Absent: ${absent}</h1>
+            </c:if>
             </div>
         </div>
     </div>

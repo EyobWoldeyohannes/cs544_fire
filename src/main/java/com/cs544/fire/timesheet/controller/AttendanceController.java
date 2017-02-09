@@ -1,9 +1,6 @@
 package com.cs544.fire.timesheet.controller;
 
-import com.cs544.fire.timesheet.model.CSession;
-import com.cs544.fire.timesheet.model.CourseOffering;
-import com.cs544.fire.timesheet.model.Registration;
-import com.cs544.fire.timesheet.model.Student;
+import com.cs544.fire.timesheet.model.*;
 import com.cs544.fire.timesheet.service.SessionService;
 import com.cs544.fire.timesheet.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -44,15 +42,33 @@ public class AttendanceController {
         if (students.size()>0)
         {
             List<CourseOffering> courseOfferings =new ArrayList<CourseOffering>();
-
+            List<Boolean> attendance =new ArrayList<Boolean>();
             for (Registration reg : students.get(0).getRegistrations())
             {
                 courseOfferings.add(reg.getCourseOfferings());
+
             }
             model.addAttribute("courseOfferings",courseOfferings);
 
 
         }
+
+        List<tempAtt> attendance =new ArrayList<tempAtt>();
+        for (CSession sess : sessions)
+        {
+            Boolean flag=studentService.getStudentAttendance("DB",students.get(0).getBarCode(),sess.getTimeslot().getAbbrv(),sess.getDate());
+
+            tempAtt tempAtt=new tempAtt();
+
+            tempAtt.sessiondate=sess.getDate();
+            tempAtt.offeringid=sess.getCourseOffering().getCourseOfferingId();
+            tempAtt.timeslot=sess.getTimeslot().getDescription();
+            tempAtt.attendance=flag;
+
+            attendance.add(tempAtt);
+        }
+        model.addAttribute("tempSession",attendance);
+
 
 
 
@@ -72,3 +88,5 @@ public class AttendanceController {
 
 
 }
+
+

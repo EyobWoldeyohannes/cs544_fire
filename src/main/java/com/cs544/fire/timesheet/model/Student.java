@@ -29,10 +29,11 @@ public class Student {
     private String barCode;
 
     @OneToMany
-
     @JoinColumn(name="student_id")
     private List<Registration> registrations =new ArrayList<Registration>();
 
+    @OneToOne
+    private User user;
 
     public List<Registration> getRegistrations() {
         return registrations;

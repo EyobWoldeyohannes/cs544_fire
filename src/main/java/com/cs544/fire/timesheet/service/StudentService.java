@@ -2,6 +2,7 @@ package com.cs544.fire.timesheet.service;
 
 import com.cs544.fire.timesheet.model.Student;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -15,4 +16,5 @@ public interface StudentService {
     public Student getStudent(long id);
     public void updateStudents(long id,Student student);
     public List<Student> getStudentById(String studentid);
+    public boolean getStudentAttendance(String locactionid, String studentid, String timeslot, Date date );
 }

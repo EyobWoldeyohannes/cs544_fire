@@ -6,6 +6,7 @@ import com.cs544.fire.timesheet.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -47,5 +48,9 @@ public class StudentServiceImpl implements StudentService {
     public List<Student> getStudentById(String studentid)
     {
         return studentDAO.getStudentById(studentid);
+    }
+    public boolean getStudentAttendance(String locactionid, String studentid, String timeslot, Date date )
+    {
+        return  studentDAO.getStudentAttendance(locactionid,studentid,timeslot,date);
     }
 }

@@ -1,4 +1,6 @@
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <%--
   Created by IntelliJ IDEA.
   User: Abel
@@ -41,38 +43,51 @@
         </div>
 
 
+
+
         <ul class="nav navbar-nav">
+            <sec:authorize access="hasRole('ROLE_STUDENT')">
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Student <span class="caret"></span></a>
                 <ul class="dropdown-menu">
                     <li><a href="#"></a></li>
-                    <li><a href="student/list">View My Attendance</a></li>
+                    <li><a href="/student/list">View My Attendance</a></li>
                     <li role="separator" class="divider"></li>
                     <li><a href="#">My Profile</a></li>
                 </ul>
             </li>
+            </sec:authorize>
+            <sec:authorize access="hasRole('ROLE_FACULTY')">
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Faculty <span class="caret"></span></a>
                 <ul class="dropdown-menu">
                     <li><a href="#"></a></li>
-                    <li><a href="/fire-timesheet/student/attendance">View Attendance</a></li>
+                    <li><a href="/student/attendance">View Attendance</a></li>
                     <li role="separator" class="divider"></li>
                     <li><a href="#">Upload Attendance</a></li>
                 </ul>
             </li>
+
+            </sec:authorize>
+            <sec:authorize access="hasRole('ROLE_ADMIN')">
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin <span class="caret"></span></a>
                 <ul class="dropdown-menu">
                     <li><a href="#"></a></li>
-                    <li><a href="/fire-timesheet/student/list">Manage Student</a></li>
+                    <li><a href="/student/list">Manage Student</a></li>
                     <li role="separator" class="divider"></li>
-                    <li><a href="#">Manage Course</a></li>
+                    <li><a href="/course/list">Manage Course</a></li>
                 </ul>
             </li>
+            </sec:authorize>
         </ul>
-
+        <sec:authentication var="principal" property="principal" />
         <div id="navbar" class="navbar-collapse collapse">
-            <form action="/fire-timesheet/login" class="navbar-form navbar-right"> Welcome User
+            <form action="/login" class="navbar-form navbar-right">
+                <sec:authorize access="isAuthenticated()">
+                    <button class="btn btn-primary">Welecome ${principal.username} You have logged in as ${principal.authorities} </button>
+                </sec:authorize>
+
                 <button type="submit" class="btn btn-success">Sign Out</button>
             </form>
         </div><!--/.navbar-collapse -->
