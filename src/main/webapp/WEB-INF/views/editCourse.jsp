@@ -18,7 +18,7 @@
                 </div>
                 <div class="form-group">
                     <label for="description">Description:</label>
-                    <input type="text" class="form-control" id="description" name="lastName" value="${course.description}">
+                    <input type="text" class="form-control" id="description" name="description" value="${course.description}">
                 </div>
                <%-- <div class="form-group">
                     <label for="bcode">Student Barcode:</label>

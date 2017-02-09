@@ -17,6 +17,7 @@ public interface StudentDAO extends GenericDAO<Student> {
 
     List<Student> getAll();
     public List<Student> getStudentById(String studentid);
+    public List<Student> getStudentByUserId(String userid);
 
     public boolean getStudentAttendance(String locactionid, String studentid, String timeslot, Date date );
 

@@ -15,7 +15,7 @@ import java.util.List;
 @Entity
 public class Student {
 
-    @GeneratedValue
+    @GeneratedValue(strategy=GenerationType.TABLE)
     private long id;
     @NotEmpty(message = "Student ID is required")
     @Pattern(regexp="\\d{3}[-]\\d{2}[-]\\d{4}", message="Student ID should be in 000-00-0000 format")

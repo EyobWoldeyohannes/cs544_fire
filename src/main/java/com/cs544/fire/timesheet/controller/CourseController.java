@@ -6,6 +6,7 @@ import com.cs544.fire.timesheet.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Required;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -24,7 +25,7 @@ import java.util.List;
      */
 
     @Controller
-    @Transactional
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
     public class CourseController {
         @Autowired
         CourseService courseService;
@@ -50,6 +51,16 @@ import java.util.List;
             Course course=courseService.getCourse(id);
             model.addAttribute("course",course);
             return "editCourse";
+        }
+        @RequestMapping(value = "/course/delete/{id}", method = RequestMethod.GET)
+        public String deleteCourseForm(@PathVariable String id,  Model model) {
+            System.out.println("***********ID: **********"+id);
+            Course course = courseService.getCourse(id);
+            courseService.delete(id);
+            model.addAttribute("id", id);
+            model.addAttribute("courses", courseService.getAllCourse());
+           // return "courseList";
+            return "redirect:/course/list";
         }
 
         @RequestMapping(value = "/course/add", method = RequestMethod.GET)

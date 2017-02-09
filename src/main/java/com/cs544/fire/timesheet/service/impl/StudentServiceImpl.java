@@ -5,6 +5,8 @@ import com.cs544.fire.timesheet.model.Student;
 import com.cs544.fire.timesheet.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
@@ -48,6 +50,10 @@ public class StudentServiceImpl implements StudentService {
     public List<Student> getStudentById(String studentid)
     {
         return studentDAO.getStudentById(studentid);
+    }
+    public List<Student> getStudentByUserId(String userid)
+    {
+        return studentDAO.getStudentByUserId(userid);
     }
     public boolean getStudentAttendance(String locactionid, String studentid, String timeslot, Date date )
     {

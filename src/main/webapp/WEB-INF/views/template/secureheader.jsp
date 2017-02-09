@@ -51,7 +51,7 @@
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Student <span class="caret"></span></a>
                 <ul class="dropdown-menu">
                     <li><a href="#"></a></li>
-                    <li><a href="/student/list">View My Attendance</a></li>
+                    <li><a href="/my/attendance">View My Attendance</a></li>
                     <li role="separator" class="divider"></li>
                     <li><a href="#">My Profile</a></li>
                 </ul>
@@ -77,6 +77,8 @@
                     <li><a href="/student/list">Manage Student</a></li>
                     <li role="separator" class="divider"></li>
                     <li><a href="/course/list">Manage Course</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="/csession/list">Manage Course</a></li>
                 </ul>
             </li>
             </sec:authorize>

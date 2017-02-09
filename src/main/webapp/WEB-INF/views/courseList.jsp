@@ -25,13 +25,14 @@
         <td>${course.coursenName}</td>
         <td>${course.description}</td>
         <td>
-            <sec:authorize access="hasRole('ROLE_ADMIN')">
-                <form action="../course/edit/${course.courseId}" method="GET">
-                    <button type="submit" class="btn btn-primary">Edit</button>
-                    <button type="button" class="btn btn-danger">Delete</button>
-                </form>
-            </sec:authorize>
+            <form action="../course/edit/${course.courseId}" method="GET">
+                <button type="submit" class="btn btn-primary">Edit</button>
+                <%--button type="button" class="btn btn-danger">Delete</button>--%>
+            </form>
 
+            <form action="../course/delete/${course.courseId}" method="GET">
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form
 
 
         </td>

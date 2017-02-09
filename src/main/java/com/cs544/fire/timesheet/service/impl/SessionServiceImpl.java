@@ -6,6 +6,7 @@ import com.cs544.fire.timesheet.service.SessionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.web.csrf.CsrfAuthenticationStrategy;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -14,7 +15,6 @@ import java.util.List;
  * Created by Abel on 2/8/2017.
  */
 @Service
-@Transactional
 public class SessionServiceImpl implements SessionService {
 
     @Autowired

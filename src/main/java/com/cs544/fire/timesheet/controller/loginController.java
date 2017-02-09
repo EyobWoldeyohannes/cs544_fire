@@ -1,6 +1,8 @@
 package com.cs544.fire.timesheet.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -11,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
  * Created by Abel on 2/7/2017.
  */
 @Controller
+@Transactional(propagation = Propagation.REQUIRES_NEW)
 public class loginController {
 
 

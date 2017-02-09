@@ -16,6 +16,7 @@ public interface CourseDAO extends GenericDAO<Course> {
 
         List<Course> getAll();
         Course get(String id);
+        boolean delete(String id);
 
 
 }

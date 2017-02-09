@@ -7,6 +7,8 @@ import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.text.Format;
@@ -19,13 +21,14 @@ import java.util.List;
  */
 
 @Repository("studentDAO")
+@Transactional(propagation = Propagation.MANDATORY)
 public class StudentDAOImpl extends GenericDAOImpl <Student> implements StudentDAO{
     @Autowired
     protected SessionFactory sessionFactory;
 
     public List<Student> getAll(){
 
-        Query query = sessionFactory.getCurrentSession().createQuery("from Student");
+        Query query = sessionFactory.getCurrentSession().createQuery("from Student s order by s.id DESC ");
 
         return (List<Student>)query.list();
 
@@ -38,6 +41,17 @@ public class StudentDAOImpl extends GenericDAOImpl <Student> implements StudentD
         List<Student> student = (List<Student>)query.list();
 
             return student;
+
+
+    }
+
+    public List<Student> getStudentByUserId(String userid){
+
+        Query query = sessionFactory.getCurrentSession().createQuery("from Student s where s.user.username=:uname");
+        query.setParameter("uname",userid);
+        List<Student> student = (List<Student>)query.list();
+
+        return student;
 
 
     }
