@@ -71,12 +71,6 @@ public class AttendanceController {
         model.addAttribute("tempSession",attendance);
 
 
-
-
-
-
-
-
         model.addAttribute("students",students);
         return "attendanceList";
     }

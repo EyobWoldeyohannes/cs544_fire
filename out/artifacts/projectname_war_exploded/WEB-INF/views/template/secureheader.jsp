@@ -78,7 +78,7 @@
                     <li role="separator" class="divider"></li>
                     <li><a href="/course/list">Manage Course</a></li>
                     <li role="separator" class="divider"></li>
-                    <li><a href="/csession/list">Manage Course</a></li>
+                    <li><a href="/csession/list">Manage Sessions</a></li>
                 </ul>
             </li>
             </sec:authorize>
